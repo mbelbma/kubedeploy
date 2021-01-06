@@ -13,7 +13,7 @@ pipeline {
       stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("mbel91/hellowhale:${env.BUILD_ID}")
+                    myapp = docker.build("hellowhale:${env.BUILD_ID}")
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
       stage("Push image") {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                    docker.withRegistry('labs.bmait.com/nexus', 'dockernexus') {
                             myapp.push("latest")
                             myapp.push("${env.BUILD_ID}")
                     }
