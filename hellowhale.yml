@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: hello-whale-app
-      version: blue
+      version: blue 
   template:
     metadata:
       name: hello-blue-whale-pod
@@ -16,12 +16,19 @@ spec:
         app: hello-whale-app
         version: blue
     spec:
+     volumes:
+     - name: nginx-pv-storage
+       persistentVolumeClaim:
+        claimName: nfs-pvc
       containers:
       - name: hello-whale-container
         image: mbel91/hellowhale:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: nginx-pv-storage
 ---
 apiVersion: v1
 kind: Service 
