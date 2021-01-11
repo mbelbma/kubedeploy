@@ -16,10 +16,6 @@ spec:
         app: hello-whale-app
         version: blue
     spec:
-     volumes:
-     - name: nginx-pv-storage
-       persistentVolumeClaim:
-        claimName: nfs-pvc
       containers:
       - name: hello-whale-container
         image: mbel91/hellowhale:latest
@@ -29,6 +25,10 @@ spec:
         volumeMounts:
         - mountPath: "/usr/share/nginx/html"
           name: nginx-pv-storage
+     volumes:
+     - name: nginx-pv-storage
+       persistentVolumeClaim:
+        claimName: nfs-pvc
 ---
 apiVersion: v1
 kind: Service 
