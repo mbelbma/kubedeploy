@@ -25,10 +25,6 @@ spec:
         volumeMounts:
         - mountPath: "/usr/share/nginx/html"
           name: nginx-pv-storage
-     volumes:
-     - name: nginx-pv-storage
-       persistentVolumeClaim:
-        claimName: nfs-pvc
 ---
 apiVersion: v1
 kind: Service 
