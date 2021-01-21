@@ -18,8 +18,9 @@ spec:
     spec:
       containers:
       - name: sourcing-front-container
-        image: labs.bmait.com/nexus:8085/sourcing-front:latest
-        imagePullPolicy: Always
+        image: labs.bmait.com/sourcing-front:latest
+        imagePullSecrets:
+        - name: regcred
         ports:
         - containerPort: 80
 ---
