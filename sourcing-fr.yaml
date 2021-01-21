@@ -1,1 +1,40 @@
-Tes
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sourcing-front-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sourcing-front-app
+      version: latest
+  template:
+    metadata:
+      name: sourcing-front-pod
+      labels:
+        app: sourcing-front-app
+        version: blue
+    spec:
+      containers:
+      - name: sourcing-front-container
+        image: labs.bmait.com/sourcing-front:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service 
+metadata:
+  name: sourcing-front-svc
+  labels:
+    app: sourcing-front-app
+spec:
+  selector:
+    app: sourcing-front-app
+    version: latest
+  type: NodePort
+  ports:
+  - nodePort: 31113
+    port: 80
+    targetPort: 80
