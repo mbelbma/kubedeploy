@@ -14,7 +14,7 @@ spec:
       name: sourcing-front-pod
       labels:
         app: sourcing-front-app
-        version: blue
+        version: latest
     spec:
       containers:
       - name: sourcing-front-container
