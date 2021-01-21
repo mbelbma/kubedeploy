@@ -19,10 +19,10 @@ spec:
       containers:
       - name: sourcing-front-container
         image: labs.bmait.com/sourcing-front:latest
-        imagePullSecrets:
-        - name: regcred
         ports:
         - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
 ---
 apiVersion: v1
 kind: Service 
